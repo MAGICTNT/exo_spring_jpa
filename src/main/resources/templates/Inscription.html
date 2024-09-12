@@ -15,23 +15,23 @@
 
 </header>
 <!-- formulaire et redirection vers la liste -->
-<form th:action="@{/inscription}" th:object="${etudiant}" method="post">
+<form th:action="@{/inscription}" th:object="${etudiant}" enctype="multipart/form-data" method="post">
     <div>
         <label for="nom">nom:</label>
         <input id="nom" name="nom" type="text" th:field="*{nom}">
-        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+<!--        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>-->
 
     </div>
     <div>
         <label for="prenom">prenom:</label>
         <input id="prenom" name="prenom" type="text" th:field="*{prenom}">
-        <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
+<!--        <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>-->
 
     </div>
     <div>
         <label for="age">age:</label>
         <input id="age" name="age" type="number" th:field="*{age}">
-        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+<!--        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>-->
 
     </div>
     <div>
@@ -41,10 +41,18 @@
     <div>
         <label for="login">login:</label>
         <input id="login" name="login" type="text" th:field="*{login}">
+<!--        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
+
     </div>
     <div>
         <label for="password">password:</label>
         <input id="password" name="password" type="password" th:field="*{password}">
+<!--        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
+
+    </div>
+    <div>
+        <label for="img">image</label>
+        <input id="img" name="img" type="file">
     </div>
 
     <button type="submit">valider</button>

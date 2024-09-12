@@ -3,13 +3,23 @@ package fr.maxime.template_spring.controller;
 
 import fr.maxime.template_spring.entity.Etudiant;
 import fr.maxime.template_spring.service.EtudiantService;
+import fr.maxime.template_spring.service.UploadService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Controller
@@ -55,12 +65,26 @@ public class EtudiantController {
     }
 
     @PostMapping("/inscription")
-    public String inscriptionEtudiant(Model model,
-                                      @Valid @ModelAttribute("etudiant") Etudiant etudiant,
-                                      BindingResult bindingResult) {
+    public String inscriptionEtudiant(@Valid @ModelAttribute("etudiant") Etudiant etudiant,
+                                      BindingResult bindingResult,
+                                      Model model,
+                                      @RequestParam("img") MultipartFile img
+                                      ) throws IOException {
+
         if (bindingResult.hasErrors()) {
+
             return "Inscription";
-        }else {
+        } else {
+            UploadService uploadService = new UploadService();
+            etudiant.setImage(uploadService.upload(img));
+//            String directoryImage = "src/main/resources/static/image/";
+//            Path destinationFile = Paths.get(directoryImage).resolve(Objects.requireNonNull(image.getOriginalFilename())).toAbsolutePath();
+//            //recuperation de l'image
+//            InputStream inputStream = image.getInputStream();
+//            Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
+//            System.out.println(etudiant);
+//            etudiant.setImage(destinationFile.toString());
+//            System.out.println(etudiant);
             etudiantService.save(etudiant);
 
             model.addAttribute("etudiants", etudiantService.findAll());

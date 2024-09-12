@@ -16,6 +16,7 @@
         <p>Prenom : <span th:text="${etudiant.getPrenom()}"></span> </p>
         <p>Age : <span th:text="${etudiant.getAge()}"></span> </p>
         <p>Tél : <span th:text="${etudiant.getEmail()}"></span> </p>
+      <img th:src="${etudiant.getImage()}">
       <button type="button" class="btn btn-success"><a class="text-white" th:href="@{/list}">retour</a></button>
 
   </nav>
