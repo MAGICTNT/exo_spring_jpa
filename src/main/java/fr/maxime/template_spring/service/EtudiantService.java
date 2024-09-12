@@ -29,6 +29,10 @@ public class EtudiantService {
         return etudiantRepository.findByNom(name);
     }
 
+    public boolean findByLoginAndPassword(String login, String password) {
+        return etudiantRepository.findByLoginAndPassword(login, password) != null;
+    }
+
     public Etudiant save(Etudiant etudiant) {
         return etudiantRepository.save(etudiant);
     }

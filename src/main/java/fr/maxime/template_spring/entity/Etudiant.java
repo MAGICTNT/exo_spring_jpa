@@ -32,4 +32,12 @@ public class Etudiant {
     @Max(100)
     private int age;
     private String email;
+    @NotBlank
+    @NotNull(message = "Ce champ doit être rempli!")
+    @Size(min = 3, message = "Minimum de 3 caractere !")
+    private String login;
+    @NotBlank
+    @NotNull(message = "Ce champ doit être rempli!")
+    @Size(min = 3, message = "Minimum de 3 caractere !")
+    private String password;
 }

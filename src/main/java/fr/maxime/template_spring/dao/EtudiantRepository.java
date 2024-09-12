@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface EtudiantRepository extends JpaRepository<Etudiant, UUID> {
     Etudiant findByNom(String nom);
+    Etudiant findByLoginAndPassword(String login, String password);
 }
